@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('trail/all', 'TrailsController@getAll'); 
+Route::get('trails', 'TrailsController@getAll'); 
 Route::get('trail/name/{name}', 'TrailsController@getTrailByName');
 Route::post('trail/create', 'TrailsController@create');
 Route::put('trail/update', 'TrailsController@update');

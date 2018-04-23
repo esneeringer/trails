@@ -35,21 +35,44 @@ class Main extends Component {
               */
               <li key={trail.id} >
                   { trail.name } 
+                  { trail.status }
               </li>      
           );
       })
     }
      
     render() {
-     /* Some css code has been removed for brevity */
-      return (
-          <div>
-                <ul>
-                  { this.renderTrails() }
-                </ul> 
-              </div> 
-         
-      );
+        const mainDivStyle =  {
+            display: "flex",
+            flexDirection: "row"
+        }
+        
+        const divStyle = {
+           
+            justifyContent: "flex-start",
+            padding: '10px',
+            width: '35%',
+            background: '#f0f0f0',
+            padding: '20px 20px 20px 20px',
+            margin: '30px 10px 10px 30px'
+            
+        }
+
+        return (
+            <div>
+              <div style= {mainDivStyle}>
+                <div style={divStyle}>
+                    <h3> All Trails </h3>
+                      <ul>
+                        { this.renderTrails() }
+                      </ul> 
+    
+                </div> 
+              </div>
+                  
+            </div>
+          
+        );
     }
   }
  

@@ -53712,6 +53712,8 @@ module.exports = ReactDOMInvalidARIAHook;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -53724,70 +53726,98 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* Main Component */
 
 var Main = function (_Component) {
-  _inherits(Main, _Component);
+    _inherits(Main, _Component);
 
-  function Main() {
-    _classCallCheck(this, Main);
+    function Main() {
+        _classCallCheck(this, Main);
 
-    //Initialize the state in the constructor
-    var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this));
+        //Initialize the state in the constructor
+        var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this));
 
-    _this.state = {
-      trails: []
-    };
-    return _this;
-  }
-  /*componentDidMount() is a lifecycle method
-   * that gets called after the component is rendered
-   */
-
-
-  _createClass(Main, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      /* fetch API in action */
-      fetch('/api/trails').then(function (response) {
-        return response.json();
-      }).then(function (trails) {
-        //Fetched trail is stored in the state
-        _this2.setState({ trails: trails });
-      });
+        _this.state = {
+            trails: []
+        };
+        return _this;
     }
-  }, {
-    key: 'renderTrails',
-    value: function renderTrails() {
-      return this.state.trails.map(function (trail) {
-        return (
-          /* When using list you need to specify a key
-           * attribute that is unique for each list item
-          */
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            { key: trail.id },
-            trail.name
-          )
-        );
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      /* Some css code has been removed for brevity */
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          null,
-          this.renderTrails()
-        )
-      );
-    }
-  }]);
+    /*componentDidMount() is a lifecycle method
+     * that gets called after the component is rendered
+     */
 
-  return Main;
+
+    _createClass(Main, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            /* fetch API in action */
+            fetch('/api/trails').then(function (response) {
+                return response.json();
+            }).then(function (trails) {
+                //Fetched trail is stored in the state
+                _this2.setState({ trails: trails });
+            });
+        }
+    }, {
+        key: 'renderTrails',
+        value: function renderTrails() {
+            return this.state.trails.map(function (trail) {
+                return (
+                    /* When using list you need to specify a key
+                     * attribute that is unique for each list item
+                    */
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'li',
+                        { key: trail.id },
+                        trail.name,
+                        trail.status
+                    )
+                );
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _divStyle;
+
+            var mainDivStyle = {
+                display: "flex",
+                flexDirection: "row"
+            };
+
+            var divStyle = (_divStyle = {
+
+                justifyContent: "flex-start",
+                padding: '10px',
+                width: '35%',
+                background: '#f0f0f0'
+            }, _defineProperty(_divStyle, 'padding', '20px 20px 20px 20px'), _defineProperty(_divStyle, 'margin', '30px 10px 10px 30px'), _divStyle);
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { style: mainDivStyle },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { style: divStyle },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'h3',
+                            null,
+                            ' All Trails '
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'ul',
+                            null,
+                            this.renderTrails()
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Main;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* unused harmony default export */ var _unused_webpack_default_export = (Main);
@@ -53796,7 +53826,7 @@ var Main = function (_Component) {
 */
 
 if (document.getElementById('root')) {
-  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Main, null), document.getElementById('root'));
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Main, null), document.getElementById('root'));
 }
 
 /***/ })

@@ -53760,6 +53760,13 @@ var Main = function (_Component) {
     }, {
         key: 'renderTrails',
         value: function renderTrails() {
+
+            var listStyle = {
+
+                listStyleType: 'none'
+
+            };
+
             return this.state.trails.map(function (trail) {
                 return (
                     /* When using list you need to specify a key
@@ -53767,9 +53774,16 @@ var Main = function (_Component) {
                     */
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'li',
-                        { key: trail.id },
-                        trail.name,
-                        trail.status
+                        { key: trail.id, style: listStyle },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'p',
+                            null,
+                            'Trail Name: ',
+                            trail.name,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+                            'Trail Status: ',
+                            trail.status
+                        )
                     )
                 );
             });

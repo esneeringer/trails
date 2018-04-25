@@ -22,3 +22,5 @@ Route::get('trail/name/{name}', 'TrailsController@getTrailByName');
 Route::post('trail/create', 'TrailsController@create');
 Route::put('trail/update', 'TrailsController@update');
 Route::put('trail/update/status', 'TrailsController@updateTrailStatus');
+
+Route::get('past/weather', 'TrailsController@getWeather'); 

@@ -13,17 +13,18 @@ class TrailService {
     /**
      * Get all trails
      */
-    public function getAllTrails(){
+    public function getAllTrails()
+    {
         return Trail::all();
     }
 
     /**
      * Get trail by name
      */
-    public function getTrailByName($name){
+    public function getTrailByName($name)
+    {
         $trail = Trail::where('name', $name)->first();
         return $trail;
-        
     }
 
     /**
@@ -40,6 +41,8 @@ class TrailService {
             $trail->city = $request->input('city');
             $trail->county = $request->input('county');
             $trail->zipcode = $request->input('zipcode');
+            $trail->latitude = $request->input('latitude');
+            $trail->longitude = $request->input('longitude');
 
         $trail->save();
     }
@@ -55,7 +58,9 @@ class TrailService {
                       'state' => $request->input('state'),
                       'city' => $request->input('city'),
                       'county' => $request->input('county'),
-                      'zipcode' => $request->input('zipcode')
+                      'zipcode' => $request->input('zipcode'),
+                      'latitude' => $request->input('latitude'),
+                      'longitude' => $request-input('longitude')
                       ]);
     }
 

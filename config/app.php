@@ -176,6 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ExternalApiProvider::class,
+        Naughtonium\LaravelDarkSky\LaravelDarkSkyServiceProvider::class
 
     ],
 
@@ -225,6 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'DarkSky' => \Naughtonium\LaravelDarkSky\Facades\DarkSky::class
 
     ],
 

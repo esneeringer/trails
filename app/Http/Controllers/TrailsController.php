@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use App\Trail;
 use App\Http\Controllers\Controller;
 use App\Services\TrailService;
+use App\Services\WeatherService;
 use Illuminate\Http\Request;
 
 class TrailsController extends Controller
 {
     protected $trailService;
 
-    public function __construct(TrailService $trailService)
+    public function __construct(TrailService $trailService, WeatherService $weatherService)
     {
         $this->trailService = $trailService;
+        $this->weatherService = $weatherService;
     }
 
     /**
@@ -60,5 +62,13 @@ class TrailsController extends Controller
     public function updateTrailStatus(Request $request)
     {
         return $this->trailService->updateTrailStatus($request);
+    }
+
+    /**
+     * Test for weather service
+     */
+    public function getWeather()
+    {
+        return response()->json($this->weatherService->pastDayWeather());
     }
 }

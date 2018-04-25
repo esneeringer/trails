@@ -28,14 +28,23 @@ class Main extends Component {
     }
    
    renderTrails() {
+
+    const listStyle = {
+
+        listStyleType: 'none'
+        
+    }
+
       return this.state.trails.map(trail => {
           return (
               /* When using list you need to specify a key
                * attribute that is unique for each list item
               */
-              <li key={trail.id} >
-                  { trail.name } 
-                  { trail.status }
+              <li key={trail.id} style={listStyle}>
+                  <p>Trail Name: { trail.name }
+                  <br /> 
+                  Trail Status: { trail.status }
+                  </p>
               </li>      
           );
       })
@@ -54,7 +63,7 @@ class Main extends Component {
             width: '35%',
             background: '#f0f0f0',
             padding: '20px 20px 20px 20px',
-            margin: '30px 10px 10px 30px'
+            margin: '30px 10px 10px 30px',
             
         }
 

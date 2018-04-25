@@ -3,12 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Services\WeatherService;
 
-class AppServiceProvider extends ServiceProvider
+class ExternalApiProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Bootstrap the application services.
      *
      * @return void
      */
@@ -18,17 +17,16 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register any application services.
+     * Register the application services.
      *
      * @return void
      */
     public function register()
     {
         //
-        //
-        $this->app->singleton('WeatherService', function($app)
+        $this->app->singleton('GuzzleApi', function($app)
         {
-            return new WeatherService();
+            return new GuzzleApi();
         });
     }
 }

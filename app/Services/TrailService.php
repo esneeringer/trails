@@ -33,11 +33,18 @@ class TrailService {
      */
     public function create(Request $request, $precipitation)
     {
+        
 
         $trail = new Trail;
 
             $trail->name = $request->input('name');
-            $trail->status = "Red";//$request->input('status');
+
+                if($precipitation == "rain"){
+                    $trail->status = "Red";
+                }else{
+                    $trail->status = "Green";
+                }
+
             $trail->country = $request->input('country');
             $trail->state = $request->input('state');
             $trail->city = $request->input('city');

@@ -45,7 +45,8 @@ class TrailsController extends Controller
      */
     public function create(Request $request)
     {
-        return $this->trailService->create($request);
+        $precipitation = $this->weatherService->pastDayPrecipitation($request->input('name'));
+        return $this->trailService->create($request, $precipitation);
     }
 
     /**
@@ -67,8 +68,8 @@ class TrailsController extends Controller
     /**
      * Test for weather service
      */
-    public function getWeather()
+    public function getWeather($name)
     {
-        return response()->json($this->weatherService->pastDayWeather());
+        return response()->json($this->weatherService->pastDayPrecipitaion($name));
     }
 }

@@ -1,23 +1,37 @@
 <?php
-/**
- * 
- */
 
 namespace App\Services;
 
 use Illuminate\Http\Request;
+use App\Services\TrailService;
 use DarkSky;
 
 class WeatherService {
 
-    public function pastDayWeather()
+    protected $trailService;
+
+    public function __construct(TrailService $trailService)
     {
-        $timestamp = time();
-        $lat = 42.3601;
-        $lon = -71.0589;
+        $this->trailService = $trailService;
+    }
+
+    public function pastDayPrecipitation($trailName)
+    {
+
+        $trail = $this->trailService->getTrailByName($trailName);
+        $lat = $trail->latitude;
+        $lon = $trail->longitude;
+
+        //Go back 24 hours to check for rain
+        $timestamp = time() - (24 * 60 * 60);
+
         $weather = DarkSky::location($lat, $lon)->atTime($timestamp)->get();
 
-        return $weather;
+        $weather = $weather->daily->data;
+        $precipitation = $weather[0]->precipType;
+
+        return $precipitation;
+
     }
 
 

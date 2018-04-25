@@ -6,6 +6,7 @@
 namespace App\Services;
 
 use App\Trail as Trail;
+use App\Services\WeatherService;
 use Illuminate\Http\Request;
 
 class TrailService {
@@ -30,12 +31,13 @@ class TrailService {
     /**
      * Create new trail
      */
-    public function create(Request $request)
+    public function create(Request $request, $precipitation)
     {
+
         $trail = new Trail;
 
             $trail->name = $request->input('name');
-            $trail->status = $request->input('status');
+            $trail->status = "Red";//$request->input('status');
             $trail->country = $request->input('country');
             $trail->state = $request->input('state');
             $trail->city = $request->input('city');
@@ -43,6 +45,7 @@ class TrailService {
             $trail->zipcode = $request->input('zipcode');
             $trail->latitude = $request->input('latitude');
             $trail->longitude = $request->input('longitude');
+            $trail->pastDayPrecip = $precipitation;
 
         $trail->save();
     }

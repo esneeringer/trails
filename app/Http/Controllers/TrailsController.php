@@ -45,7 +45,8 @@ class TrailsController extends Controller
      */
     public function create(Request $request)
     {
-        $precipitation = $this->weatherService->pastDayPrecipitation($request->input('name'));
+        $precipitation = $this->weatherService->pastDayPrecipitation($request->input('latitude'), $request->input('longitude'));
+
         return $this->trailService->create($request, $precipitation);
     }
 

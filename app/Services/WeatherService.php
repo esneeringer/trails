@@ -15,12 +15,12 @@ class WeatherService {
         $this->trailService = $trailService;
     }
 
-    public function pastDayPrecipitation($trailName)
+    public function pastDayPrecipitation($latitude, $longitude)
     {
 
-        $trail = $this->trailService->getTrailByName($trailName);
-        $lat = $trail->latitude;
-        $lon = $trail->longitude;
+        //$trail = $this->trailService->getTrailByName($trailName);
+        $lat = $latitude;
+        $lon = $longitude;
 
         //Go back 24 hours to check for rain
         $timestamp = time() - (24 * 60 * 60);
@@ -28,7 +28,13 @@ class WeatherService {
         $weather = DarkSky::location($lat, $lon)->atTime($timestamp)->get();
 
         $weather = $weather->daily->data;
-        $precipitation = $weather[0]->precipType;
+        $weatherArray = $weather[0];
+
+        $precipitation = "none";
+        
+        if(array_key_exists("precipType", $weatherArray)){
+            $precipitation = $weather[0]->precipType;
+        }
 
         return $precipitation;
 

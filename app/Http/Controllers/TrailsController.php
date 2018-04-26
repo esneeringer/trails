@@ -45,7 +45,10 @@ class TrailsController extends Controller
      */
     public function create(Request $request)
     {
-        //Get yesterdays precipitation
+        /**
+         * Get yesterdays precipitation
+         * This needs to move to Service
+         * */
         $precipitation = $this->weatherService->pastDayPrecipitation($request->input('latitude'), $request->input('longitude'));
         
         return $this->trailService->create($request, $precipitation);

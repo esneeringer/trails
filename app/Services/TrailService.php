@@ -33,7 +33,6 @@ class TrailService {
      */
     public function create(Request $request, $precipitation)
     {
-        
 
         $trail = new Trail;
 

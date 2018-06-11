@@ -6,6 +6,7 @@
 namespace App\Services;
 
 use App\Trail as Trail;
+use App\Email as Email;
 use App\Services\WeatherService;
 use Illuminate\Http\Request;
 
@@ -76,9 +77,24 @@ class TrailService {
     /**
      * Update trail status
      */
-    public function updateTrailStatus(Request $request)
+    public function updateTrailStatus($name, $status)
     {
-        Trail::where('name', $request->input('name'))
-                ->update(['status' => $request->input('status')]);
+        Trail::where('name', $name)
+                ->update(['status' => $status]);
+    }
+
+    /**
+     *
+     */
+    public function createSignup($emailAddress, $list, $referrer)
+    {
+        $email = new Email;
+
+        $email->email = $emailAddress;
+        $email->list = $list;
+        $email->referrer = $referrer;
+
+        $email->save();
+
     }
 }

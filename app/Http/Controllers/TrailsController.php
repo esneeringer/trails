@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessSignup;
 use App\Trail;
 use App\Http\Controllers\Controller;
 use App\Services\TrailService;
 use App\Services\WeatherService;
 use Illuminate\Http\Request;
+use App\Jobs\TrailUpdate;
 
 class TrailsController extends Controller
 {
@@ -67,8 +69,37 @@ class TrailsController extends Controller
      */
     public function updateTrailStatus(Request $request)
     {
-        return $this->trailService->updateTrailStatus($request);
+        //return $this->trailService->updateTrailStatus($request);
+        $name = $request->input('name');
+        $status = $request->input('status');
+
+        $this->dispatch(new TrailUpdate($name, $status));
     }
+
+    /**
+     * Incoming Signup
+     */
+    public function processSignupSqs(Request $request)
+    {
+        $email = $request->input('email');
+        $list = $request->input('list');
+        $referrer = $request->input('referrer');
+
+        $this->dispatch(new ProcessSignup($email, $list, $referrer));
+    }
+
+    /**
+     * Incoming Signup
+     */
+    public function processSignupDb(Request $request)
+    {
+        $emailAddress = $request->input('email');
+        $list = $request->input('list');
+        $referrer = $request->input('referrer');
+
+        $this->trailService->createSignup($emailAddress, $list, $referrer);
+    }
+
 
     /**
      * Test for weather service

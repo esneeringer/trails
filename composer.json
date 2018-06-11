@@ -12,7 +12,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "naughtonium/laravel-dark-sky": "^1.2",
-        "phpoffice/phpspreadsheet": "^1.2"
+        "phpoffice/phpspreadsheet": "^1.2",
+        "aws/aws-sdk-php": "~3.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

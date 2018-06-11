@@ -31,7 +31,7 @@ class WeatherService {
         $weatherArray = $weather[0];
 
         $precipitation = "none";
-        
+
         if(array_key_exists("precipType", $weatherArray)){
             $precipitation = $weather[0]->precipType;
         }

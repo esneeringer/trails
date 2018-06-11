@@ -22,7 +22,7 @@ Route::get('trail/name/{name}', 'TrailsController@getTrailByName');
 Route::post('trail/create', 'TrailsController@create');
 Route::put('trail/update', 'TrailsController@update');
 Route::put('trail/update/status', 'TrailsController@updateTrailStatus');
+Route::post('trail/signup/process', 'TrailsController@processSignupSqs');
+Route::post('trail/signup/process/db', 'TrailsController@processSignupDb');
 
 Route::get('past/weather/trail/{name}', 'TrailsController@getWeather');
-
-Route::get('csv', 'CsvController@getFile');
